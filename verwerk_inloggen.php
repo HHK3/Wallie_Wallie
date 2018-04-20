@@ -45,5 +45,5 @@ $_SESSION['hash'] = $hash;
 setcookie('username', $username, time() + 3600 * 24 * 7);
 $_SESSION['username'] = $username;
 
-header('Location: url=wall.php');
+header('Location: wall.php');
 ?>
