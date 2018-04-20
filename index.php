@@ -86,7 +86,7 @@ if (isset($_COOKIE['userid']) OR isset($_SESSION['userid'])) {
         </div>
         <div class="container">
             <h1>Contact</h1>
-            <p class="text1">U kunt contact opnemen met één van ons voor al uw vragen, opmerkingen etc.</p>
+            <p class="text1">U kunt contact opnemen met een van ons voor al uw vragen, opmerkingen etc.</p>
             <hr>
             <br>
             <div id="grid">
