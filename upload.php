@@ -16,7 +16,7 @@ if (!isset($_SESSION['userid'])) {
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,7 +30,7 @@ if (!isset($_SESSION['userid'])) {
 <div class="topnav" id="myTopnav">
     <a href="upload.php" class="active">Upload</a>
     <a href="wall.php">Wall</a>
-    <a href="geupload.php">Mijn geuploade foto's</a>
+    <a href="geupload.php">Mijn foto's</a>
     <?php
         if ($_SESSION['username'] == 'HooHahKong') {
             echo '<a href="admin.php">Admin</a>';
@@ -46,13 +46,13 @@ if (!isset($_SESSION['userid'])) {
 <div class="main-wrapper">
     <div class="masonry">
 <form enctype="multipart/form-data" method="post" action="process_upload.php" >
-    <input type="file" name="image" accept="image/*" onchange="preview_image(event)"/><br><br>
+    <input type="file" name="image" accept="image/*" onchange="preview_image(event)" required/><br><br>
     <img src="preview.png" id="preview"><br><br>
     <label for="title" id="labelTit">Titel</label><span class="text-muted pull-right" id="count1">20</span>
     <br>
-    <textarea name="title" id="title" cols="25" maxlength="20" onkeyup="count_down1(this);"></textarea><br>
+    <textarea name="title" id="title" cols="21" maxlength="20" onkeyup="count_down1(this);"></textarea><br>
     <label for="text" id="labelTex">Count Down</label><span class="text-muted pull-right" id="count2">30</span><br>
-    <textarea class="form-control" name="text" rows="5" cols="30" maxlength="30" onkeyup="count_down(this);"></textarea>
+    <textarea class="form-control" name="text" cols="30" maxlength="30" onkeyup="count_down(this);"></textarea>
     <br>
 
     <input type="submit" value="Uploaden!" name="submit">

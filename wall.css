@@ -56,7 +56,7 @@ body {
     display: none;
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 1200px) {
     .topnav a:not(:first-child) {display: none;}
     .topnav a.icon {
         float: right;
@@ -64,7 +64,7 @@ body {
     }
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 1200px) {
     .topnav.responsive {
         position: relative;
     }
@@ -346,7 +346,14 @@ span.psw {
     opacity: 1;
 }
 
-
+#form {
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 10px;
+    max-width: 100%;
+}
 
 #image_groot {
 
@@ -428,6 +435,16 @@ span.psw {
     .main-wrapper{
         margin: 0 auto;
         width: 300px;
+    }
+    #form {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        margin-top: 10px;
+        max-width: 100%;
+    }
+    .h1 {
+        font-size: 20px;
     }
 }
 

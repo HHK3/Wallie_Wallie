@@ -21,10 +21,12 @@ if (!isset($_SESSION['userid'])) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="nl">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="admin.css">
+    <meta charset="UTF-8">
+
 </head>
 <body>
 
@@ -33,9 +35,8 @@ if (!isset($_SESSION['userid'])) {
     <a href="admin.php" class="active">Admin</a>
     <a href="wall.php">Wall</a>
     <a href="upload.php">Upload</a>
-    <a href="geupload.php">Mijn geuploade foto's</a>
+    <a href="geupload.php">Mijn foto's</a>
     <a onclick="document.getElementById('id03').style.display='block'" style="width:auto;">Contact</a>
-
     <a href="verwerk_uitlog.php">Uitloggen</a>
     <a id="hallo">Hallo  <?php echo $_SESSION['username']?>!</a>
     <a href="javascript:void(0);" style="font-size:18px;" class="icon" onclick="myFunction7()" id="icon">&#9776;</a>

@@ -26,18 +26,19 @@ $stmt->execute() or die ('Error executing');
 
 
 <!DOCTYPE html>
-<html>
+<html lang="nl">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="wall.css">
+    <meta charset="UTF-8">
+
 </head>
 <body>
 
 <div class="topnav" id="myTopnav">
-    <a href="geupload.php" class="active">Mijn geuploade foto's</a>
+    <a href="geupload.php" class="active">Mijn foto's</a>
     <a href="wall.php" >Wall</a>
     <a href="upload.php">Upload</a>
-
     <a onclick="document.getElementById('id03').style.display='block'" style="width:auto;">Contact</a>
     <?php
         if ($_SESSION['username'] == 'HooHahKong') {
@@ -49,6 +50,7 @@ $stmt->execute() or die ('Error executing');
     <a href="javascript:void(0);" style="font-size:18px;" class="icon" onclick="myFunction7()" id="icon">&#9776;</a>
 </div>
 
+<h1>Mijn foto's</h1>
 
 <div id="id03" class="modal3">
     <div class="modal-content animate" >
@@ -89,12 +91,12 @@ while ($succes = $stmt->fetch()) {
                             <a href="deletePhoto.php?photo_id=' . $id . '&picture=' . $picture . '"><img src="delete.png" width="30px" height="30px" class="delete" ></a>
                             <br>
                 <div class="modal-b">
-                    <h1 class="mdTit">' . htmlentities($title) . '</h1>
-                    <p class="mdTex">' . htmlentities($text) . '</p>
+                    <h1 class="mdTit">' . htmlentities($title, ENT_QUOTES, 'utf-8') . '</h1>
+                    <p class="mdTex">' . htmlentities($text, ENT_QUOTES, 'utf-8') . '</p>
                     <img class="mdImg" src="' . htmlentities($picture) . '" style=" height: 400px;" />
                     <hr>
-                    <p class="mdUs"> Geupload door: ' . htmlentities($username) . '</p>
-                    <p class="mdDat"> Geplaatst op: ' . htmlentities($date) . '.</p>
+                    <p class="mdUs"> Geupload door: ' . htmlentities($username, ENT_QUOTES, 'utf-8') . '</p>
+                    <p class="mdDat"> Geplaatst op: ' . htmlentities($date, ENT_QUOTES, 'utf-8') . '.</p>
                     </div>
                     </div>
                     </div>';

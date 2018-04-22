@@ -6,21 +6,27 @@ if($fullUrl == 'http://25061.hosts.ma-cloud.nl/wall/verify_ww.php') {
 }
 
 $mailadres = $_GET['mailadres'];
+
 // Checken of mail klopt met token
 require ('private/connection.php');
-$query = "SELECT resetid FROM reset WHERE mailadres = ? AND token = ?";
+$query = "SELECT resetid, active FROM reset WHERE mailadres = ? AND token = ?";
 $stmt = $mysqli->prepare($query) or die ('Error preparing for SELECT.');
 $stmt->bind_param('ss', $mailadres, $token);
 $mailadres = $_GET['mailadres'];
 $token = $_GET['reset'];
 $stmt->execute();
-$stmt->bind_result($resetid);
+$stmt->bind_result($resetid, $active);
 $row = $stmt->fetch();
 
 if (!$resetid) {
     header('Location: index.php?verified_ww=failure');
     exit();
+} else if ($active == 0) {
+    header('Location: index.php?verified_ww=already_verified');
+    exit();
 }
+
+
 $stmt->close();
 ?>
 
@@ -29,7 +35,7 @@ $stmt->close();
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CJ Fotografie</title>
-    <link rel="stylesheet" href="homestyle.css">
+    <link rel="stylesheet" href="homestyle2.css">
 </head>
 <body>
 
@@ -47,17 +53,16 @@ $stmt->close();
                 echo '<p class="error">Je hebt twee verschillende wachtwoorden ingetypt. Probeer het opnieuw.</p>';
             }
             ?>
-            <p class="text">Vul de volgende gegevens in om in te registreren.</p>
+            <p class="text">Vul de volgende gegevens in om je wachtwoord te wijzigen.</p>
             <hr>
             <br>
-            <label for="password1"><b>Wachtwoord</b></label>
-            <input type="password" placeholder="Voer hier uw wachtwoord in" name="password1" required>
+            <label><b>Wachtwoord (Min. 6 tekens)</b></label>
+            <input type="password" placeholder="Wachtwoord" name="password1" pattern=".{6,}" title="Zes of meer tekens" required>
             <br><br>
             <label for="password2"><b>Herhaal Wachtwoord</b></label>
-            <input type="password" placeholder="Voer hier uw wachtwoord nog een keer in" name="password2" required>
-            <input type="hidden" name="mailadres" value="<?= $mailadres; ?>" />;
-
-
+            <input type="password" placeholder="Herhaal wachtwoord" name="password2" required>
+            <input type="hidden" name="mailadres" value="<?= $mailadres; ?>" />
+            <input type="hidden" name="token" value="<?= $token; ?>" />
 
             <button type="submit" name="submit_verify_ww">Wachtwoord wijzigen</button>
         </div>
@@ -68,4 +73,3 @@ $stmt->close();
 </body>
 </html>
 
-    <input type="hidden" name="email_address" value="<?php echo $_POST['email_address'];?> />;

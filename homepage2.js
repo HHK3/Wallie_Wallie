@@ -3,21 +3,12 @@ var modal1 = document.getElementById('id01');
 var modal2 = document.getElementById('id02');
 var modal3 = document.getElementById('id03');
 var modal4 = document.getElementById('id04');
-var modal10 = document.getElementById('id10');
-
+var modal9 = document.getElementById('id09');
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-    if (event.target == modal2) {
-        modal2.style.display = "none";
-    } else if (event.target == modal1) {
-        modal1.style.display = "none";
-    } else if (event.target == modal3) {
+    if (event.target == modal3) {
         modal3.style.display = "none";
-    } else if (event.target == modal4) {
-        modal4.style.display = "none";
-    }   else if (event.target == modal10) {
-        modal10.style.display = "none";
     }
 
 
@@ -39,8 +30,8 @@ function myFunction4() {
     document.getElementById('id04').style.display = 'none';
 }
 
-function myFunction10() {
-    document.getElementById('id10').style.display = 'none';
+function myFunction5() {
+    document.getElementById('id09').style.display = 'none';
 }
 
 

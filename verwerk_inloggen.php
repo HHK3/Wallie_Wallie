@@ -7,13 +7,6 @@ if (!isset($_POST['submit_log'])) {
     header('Location: index.php');
 }
 
-//// Checken of de gebruiker alles heeft ingevuld
-//if (empty($_POST['username_log']) OR empty($_POST['password'])) {
-//    header("Location: index.php?login=empty");
-//    echo 'Je bent iets vergeten in te vullen <br>';
-//    echo 'Klik <a href="index.php">hier</a> om het nog eens te proberen.';
-//    exit();
-//}
 
 // Checken of de gebruiker bestaat (en of zijn wachtwoord klopt)
 require ('private/connection.php');

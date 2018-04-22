@@ -38,12 +38,14 @@ if ($row) {
 }
 
 //Gebruiker toevoegen aan database
-$query = "INSERT INTO gebruikers VALUES (0, ?, ?, ?, ?, 0)";
+
+$query = "INSERT INTO gebruikers VALUES (0, ?, ?, ?, ?, ?, 0)";
 $stmt = $mysqli->prepare($query)  or die ("Error prep3");
-$stmt->bind_param('ssss', $username, $mailadres, $hash, $password)  or die ("Error bind3");
+$stmt->bind_param('sssss', $username, $mailadres, $hash, $password, $pf)  or die ("Error bind3");
 $username = $_POST['username'];
 $mailadres = $_POST['mail'];
 $randomnumber = rand(0,1000000);
+$pf = 'pf/default.jpg';
 $hash = hash('sha512', $randomnumber);
 $password = hash('sha512', $_POST['password1']);
 $result = $stmt->execute() or die ('Error inserting user.');

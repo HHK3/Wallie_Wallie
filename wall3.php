@@ -1,10 +1,6 @@
 <?php
 
 session_start();
-$fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-$id = $_GET['id'];
-$username = $_GET['username'];
-$mailadres = $_GET['mailadres'];
 
 //Checken of de gebruiker verdwaald is
 if (!isset($_SESSION['userid'])) {
@@ -16,13 +12,12 @@ if (!isset($_SESSION['userid'])) {
         $_SESSION['hash'] = $_COOKIE[ 'hash'];
         $_SESSION['username'] = $_COOKIE[ 'username'];
     }
-}else{
-    if ($_SESSION['username'] != 'HooHahKong' && strpos($fullUrl, "id=' . $id . '&username=' . $username  . '&mailadres=' . $mailadres . '") == false) {
-        header('Location: wall.php');
-    }
 }
+?>
 
+<?php
 require ('private/connection.php');
+$username = $_GET['username'];
 $query = "SELECT postid, title, text, picture, DATE_FORMAT(datum, '%d %M %Y'), username FROM posts WHERE username = '$username' ORDER BY postid DESC";
 $stmt = $mysqli->prepare($query) or die ('Error preparing');
 $stmt->bind_result($id, $title, $text, $picture, $date, $username) or die ('Error binding resukts');
@@ -45,8 +40,8 @@ if ($username == $_SESSION['username']) {
 <body>
 
 <div class="topnav" id="myTopnav">
-    <a href="wall2.php?username=<?=$username?>" class="active">Foto's van <?=$username?>(E)</a>
-    <a href="wall.php" >Wall</a>
+    <a href="wall3.php?username=<?=$username?>" class="active">Foto's van <?=$username?></a>
+    <a href="wall.php">Wall</a>
     <a href="upload.php">Upload</a>
     <a href="geupload.php">Mijn foto's</a>
     <a onclick="document.getElementById('id03').style.display='block'" style="width:auto;">Contact</a>
@@ -91,12 +86,11 @@ while ($succes = $stmt->fetch()) {
             
             <div class="modal-c">
                             <span id="close" class="close' . $id . '">X</span>
-                            <a href="deletePhoto2.php?photo_id=' . $id . '&picture=' . $picture . '"><img src="delete.png" width="30px" height="30px" class="delete" ></a>
-                            <br>
+                           <br>
                 <div class="modal-b">
                     <h1 class="mdTit">' . htmlentities($title, ENT_QUOTES, 'utf-8') . '</h1>
                     <p class="mdTex">' . htmlentities($text, ENT_QUOTES, 'utf-8') . '</p>
-                    <img class="mdImg" src="' . $picture . '" style=" height: 400px;" />
+                    <img class="mdImg" src="' . htmlentities($picture) . '" style=" height: 400px;" />
                     <hr>
                     <p class="mdUs"> Geupload door: ' . htmlentities($username, ENT_QUOTES, 'utf-8') . '</p>
                     <p class="mdDat"> Geplaatst op: ' . htmlentities($date, ENT_QUOTES, 'utf-8') . '</p>
@@ -130,7 +124,6 @@ while ($succes = $stmt->fetch()) {
 
 echo '</div>';
 echo '</div>';
-
 
 //?>
 <script>
